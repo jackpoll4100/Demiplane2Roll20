@@ -6,7 +6,7 @@ Note that this tool does not use the Roll20 api and so should not require you to
 This is a ```UserScript```, meaning it needs to be used with a browser extension like [TamperMonkey](https://www.tampermonkey.net/) or [ViolentMonkey](https://chromewebstore.google.com/detail/violentmonkey/jinjaccalgkegednnccohejagnlnfdag) etc.
 
 Once you have one of those extensions, you can enable it by clicking the install button on this page:
-placeholder
+[placeholder](https://greasyfork.org/en/scripts/503467-demiplane-2-roll20)
 
 When enabled, it creates a communication layer between Demiplane and Roll20, allowing rolls made in your Demiplane character sheet to automatically appear in Roll20 (with the same roll result that shows in Demiplane).
 
