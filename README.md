@@ -1,6 +1,9 @@
 # Demiplane 2 Roll20
-A tool that enables rolls from Demiplane character sheets to be rolled in Roll20
+A tool that enables rolls from Demiplane character sheets to be rolled in Roll20.
+
 Note that this tool does not use the Roll20 api and so should not require you to be a Pro member to make use of it.
+
+This tool is also compatible with the new Discord Activity for Roll20.
 
 ## Overview
 This is a ```UserScript```, meaning it needs to be used with a browser extension like [TamperMonkey](https://www.tampermonkey.net/) or [ViolentMonkey](https://chromewebstore.google.com/detail/violentmonkey/jinjaccalgkegednnccohejagnlnfdag) etc.
