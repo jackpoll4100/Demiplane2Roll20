@@ -25,12 +25,19 @@ Lots of games have particular features tied to certain roll results/specialty di
 Below is a list of these features by game (please let me know if I have missed any big ones):
 
 Cosmere RPG: Opportunity, Complication
+
 Marvel RPG: Fantastic, Ultimate Fantastic
+
 Daggerheart: Hope, Fear, Critical Success
+
 Candela Obscura: Critical Success
+
 Starfinder: Natural 20s
+
 Pathfinder: Natural 20s
+
 Alien RPG: Panic
+
 Vampire the Masquerade: Messy Critical, Bestial Failure, Standard Critical
 
 ## Caveats/Known Issues:
