@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Demiplane 2 Roll20
 // @namespace    jackpoll4100
-// @version      1.3
+// @version      1.4
 // @description  Allows rolling from demiplane character sheets in roll20.
 // @author       jackpoll4100
 // @match        https://app.demiplane.com/*
@@ -159,7 +159,7 @@
               nameVal: 'dice-history-name',
               charName: 'character-name',
               modifiers: {
-                  'history-item-result__die--hunger-success': 'Messy Critical',
+                  'history-item-result__die--hunger-critical': 'Messy Critical',
                   'history-item-result__die--hunger-1': 'Bestial Failure',
                   'history-item-result__die--standard-critical': 'Standard Critical'
               }
