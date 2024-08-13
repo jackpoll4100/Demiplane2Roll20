@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Demiplane 2 Roll20
 // @namespace    jackpoll4100
-// @version      1.0
+// @version      1.1
 // @description  Allows rolling from demiplane character sheets in roll20.
 // @author       jackpoll4100
 // @match        https://app.demiplane.com/*
@@ -220,13 +220,26 @@
           for (let e of rollCasesEls){
               secondaryRollNamesEls.push(e.getElementsByClassName(demiGameClassMap?.[game]?.secondaryNameVal || 'nothing')?.[0] || 0);
               damageRollEls.push(e.getElementsByClassName(demiGameClassMap?.[game]?.damageVal || 'nothing')?.[0] || 0);
+              if (game === 'cosmere'){
+                  let hit = e.getElementsByClassName('dice-history-damage-container--hit-container')?.[0]?.innerHTML?.replace('Hit', ' Hit ') || 0;
+                  let graze = e.getElementsByClassName('dice-history-damage-container--graze-container')?.[0]?.innerHTML?.replace('Graze', ' Graze ') || 0;
+                  let crit = e.getElementsByClassName('dice-history-damage-container--critical-hit-container')?.[0]?.innerHTML?.replace('Critical Hit', ' Critical Hit ') || 0;
+                  if (hit || graze || crit){
+                      damageRolls.push(`${ hit ? hit : '' }${ graze ? graze : '' }${ crit ? crit : '' }`);
+                  }
+                  else {
+                      damageRolls.push(0);
+                  }
+              }
           }
           let rollTypes = [];
           for (let e of secondaryRollNamesEls){
               rollTypes.push(e ? e.innerHTML : '');
           }
-          for (let e of damageRollEls){
-              damageRolls.push(e ? e.innerHTML : '');
+          if (game !== 'cosmere'){
+              for (let e of damageRollEls){
+                  damageRolls.push(e ? e.innerHTML : '');
+              }
           }
           if (demiGameClassMap?.[game]?.orderReversed){
               rollNames = rollNames.reverse();
