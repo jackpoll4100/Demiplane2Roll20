@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Demiplane 2 Roll20
 // @namespace    jackpoll4100
-// @version      1.1
+// @version      1.2
 // @description  Allows rolling from demiplane character sheets in roll20.
 // @author       jackpoll4100
 // @match        https://app.demiplane.com/*
@@ -117,7 +117,12 @@
               secondaryNameVal: 'dice-roll__origin',
               charName: 'header-character-name-container',
               rollsClosed: 'dice-roller__fab--expanded',
-              orderReversed: true
+              orderReversed: true,
+              modifiers: {
+                  'dice-roll--miss': 'Miss',
+                  'dice-roll--weak-hit': 'Weak Hit',
+                  'dice-roll--strong-hit': 'Strong Hit'
+              }
           },
           'starfinder': {
               rollVals: ['dice-roll__total'],
@@ -277,7 +282,7 @@
               }
           }
           let charName = document?.getElementsByClassName(demiGameClassMap?.[game]?.charName || 'nothing')?.[0]?.children?.[0]?.innerHTML;
-          let constructedMessage = `&{template:default} {{name=${ charName ? `${ charName } - ` : '' }${ rollNames[rolls.length - 1] }}} ${ rollTypes[rolls.length - 1] ? `{{type=${ rollTypes[rolls.length - 1] }}}` : '' } {{roll=${ rolls[rolls.length - 1] }}} ${ rollCases?.[rolls.length - 1] ? '{{modifiers=' + rollCases[rolls.length - 1] + '}}' : '' } ${ damageRolls[rolls.length - 1] ? `{{damage=${ damageRolls[rolls.length - 1] }}}` : '' }`;
+          let constructedMessage = `&{template:default} {{name=${ charName ? `${ charName } - ` : '' }${ rollNames[rolls.length - 1] }}} ${ rollTypes[rolls.length - 1] ? `{{type=${ rollTypes[rolls.length - 1] }}}` : '' } {{result=${ rolls[rolls.length - 1] }}} ${ rollCases?.[rolls.length - 1] ? '{{additional effects=' + rollCases[rolls.length - 1] + '}}' : '' } ${ damageRolls[rolls.length - 1] ? `{{damage=${ damageRolls[rolls.length - 1] }}}` : '' }`;
           console.log('Sending message to roll20: ', constructedMessage);
           GM_sendMessage('demiplane-pipe', `${ Math.random() }---` + constructedMessage);
           setTimeout(()=>{ rollWatcher(lState); }, 1000);
