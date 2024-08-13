@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Demiplane 2 Roll20
 // @namespace    jackpoll4100
-// @version      1.2
+// @version      1.3
 // @description  Allows rolling from demiplane character sheets in roll20.
 // @author       jackpoll4100
 // @match        https://app.demiplane.com/*
@@ -174,25 +174,29 @@
           }
           return 'cosmere';
       }
-      function rollWatcher(prevLState){
+      function rollWatcher(prevLState, charHash){
           let game = getGame();
           let menuOpen = document.getElementsByClassName(demiGameClassMap?.[game]?.rollsClosed || 'dice-close-button').length;
-          if (!menuOpen){
-              setTimeout(()=>{ rollWatcher(prevLState); }, 1000);
-              return;
-          }
           let sessionID = window.location.href.substring(window.location.href.lastIndexOf('/') + 1) + '-dice-history';
           let lState = localStorage.getItem(sessionID);
           if (!lState){
               sessionID = sessionID.replace('dice-history', 'dicerolls');
               lState = localStorage.getItem(sessionID);
           }
+          if (charHash !== sessionID){
+              setTimeout(()=>{ rollWatcher(lState, sessionID); }, 1000);
+              return;
+          }
+          if (!menuOpen){
+              setTimeout(()=>{ rollWatcher(prevLState, sessionID); }, 1000);
+              return;
+          }
           let shouldRoll = false;
           if (JSON.stringify(prevLState) !== JSON.stringify(lState)){
               shouldRoll = true;
           }
           if (!shouldRoll){
-              setTimeout(()=>{ rollWatcher(prevLState); }, 1000);
+              setTimeout(()=>{ rollWatcher(prevLState, sessionID); }, 1000);
               return;
           }
           let rollEls = document.querySelectorAll(demiGameClassMap?.[game]?.rollVals ? `.${ demiGameClassMap?.[game]?.rollVals.join(',.') }` : 'nothing');
@@ -285,7 +289,7 @@
           let constructedMessage = `&{template:default} {{name=${ charName ? `${ charName } - ` : '' }${ rollNames[rolls.length - 1] }}} ${ rollTypes[rolls.length - 1] ? `{{type=${ rollTypes[rolls.length - 1] }}}` : '' } {{result=${ rolls[rolls.length - 1] }}} ${ rollCases?.[rolls.length - 1] ? '{{additional effects=' + rollCases[rolls.length - 1] + '}}' : '' } ${ damageRolls[rolls.length - 1] ? `{{damage=${ damageRolls[rolls.length - 1] }}}` : '' }`;
           console.log('Sending message to roll20: ', constructedMessage);
           GM_sendMessage('demiplane-pipe', `${ Math.random() }---` + constructedMessage);
-          setTimeout(()=>{ rollWatcher(lState); }, 1000);
+          setTimeout(()=>{ rollWatcher(lState, sessionID); }, 1000);
       }
       let sessionID = window.location.href.substring(window.location.href.lastIndexOf('/') + 1) + '-dice-history';
       let lState = localStorage.getItem(sessionID);
@@ -293,7 +297,7 @@
           sessionID = sessionID.replace('dice-history', 'dicerolls');
           lState = localStorage.getItem(sessionID);
       }
-      rollWatcher(lState);
+      rollWatcher(lState, sessionID);
   }
 
 })();
