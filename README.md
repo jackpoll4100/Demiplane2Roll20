@@ -31,6 +31,8 @@ Cosmere RPG: Opportunity, Complication
 
 Marvel RPG: Fantastic, Ultimate Fantastic
 
+Avatar Legends: Miss/Weak/Strong Hit
+
 Daggerheart: Hope, Fear, Critical Success
 
 Candela Obscura: Critical Success
