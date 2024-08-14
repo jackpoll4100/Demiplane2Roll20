@@ -9,9 +9,11 @@ This tool is also compatible with the new Discord Activity for Roll20.
 This is a ```UserScript```, meaning it needs to be used with a browser extension like [TamperMonkey](https://chromewebstore.google.com/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo) or [ViolentMonkey](https://chromewebstore.google.com/detail/violentmonkey/jinjaccalgkegednnccohejagnlnfdag) etc.
 
 Once you have one of those extensions, you can enable it by clicking the install button on this page:
+
 https://greasyfork.org/en/scripts/503467-demiplane-2-roll20
 
 Note, if you are on certain newer versions of Google Chrome, you may need to turn on the developer mode setting for Tampermonkey to work properly, see the instructions here:
+
 [Update - We are experiencing interruptions in multiple public GitHub services. We suspect the impact is due to a database infrastructure related change that we are working on rolling back.](https://www.tampermonkey.net/faq.php#Q209)
 
 When enabled, it creates a communication layer between Demiplane and Roll20, allowing rolls made in your Demiplane character sheet to automatically appear in Roll20 (with the same roll result that shows in Demiplane).
