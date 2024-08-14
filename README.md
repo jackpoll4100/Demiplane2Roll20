@@ -11,11 +11,14 @@ This is a ```UserScript```, meaning it needs to be used with a browser extension
 Once you have one of those extensions, you can enable it by clicking the install button on this page:
 https://greasyfork.org/en/scripts/503467-demiplane-2-roll20
 
+Note, if you are on certain newer versions of Google Chrome, you may need to turn on the developer mode setting for Tampermonkey to work properly, see the instructions here:
+[Update - We are experiencing interruptions in multiple public GitHub services. We suspect the impact is due to a database infrastructure related change that we are working on rolling back.](https://www.tampermonkey.net/faq.php#Q209)
+
 When enabled, it creates a communication layer between Demiplane and Roll20, allowing rolls made in your Demiplane character sheet to automatically appear in Roll20 (with the same roll result that shows in Demiplane).
 
 ## Getting Started
 
-Once you have added the userscript to your extension of choice and enabled it, you have everything you need.
+Once you have added the userscript to your extension of choice and enabled it, you have everything you need (do note the caveat about the developer setting on chrome above).
 
 Each time you open Roll20, you should see an extra bit of ui under the chat box labelled 'Enable rolls from Demiplane'.
 This checkbox defaults to off whenever you open a new Roll20 session to prevent you from making rolls accidentally.
