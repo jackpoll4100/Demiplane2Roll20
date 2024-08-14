@@ -6,7 +6,7 @@ Note that this tool does not use the Roll20 api and so should not require you to
 This tool is also compatible with the new Discord Activity for Roll20.
 
 ## Overview
-This is a ```UserScript```, meaning it needs to be used with a browser extension like [TamperMonkey](https://www.tampermonkey.net/) or [ViolentMonkey](https://chromewebstore.google.com/detail/violentmonkey/jinjaccalgkegednnccohejagnlnfdag) etc.
+This is a ```UserScript```, meaning it needs to be used with a browser extension like [TamperMonkey](https://chromewebstore.google.com/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo) or [ViolentMonkey](https://chromewebstore.google.com/detail/violentmonkey/jinjaccalgkegednnccohejagnlnfdag) etc.
 
 Once you have one of those extensions, you can enable it by clicking the install button on this page:
 https://greasyfork.org/en/scripts/503467-demiplane-2-roll20
