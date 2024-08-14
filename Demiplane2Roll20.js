@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Demiplane 2 Roll20
 // @namespace    jackpoll4100
-// @version      1.4
+// @version      1.5
 // @description  Allows rolling from demiplane character sheets in roll20.
 // @author       jackpoll4100
 // @match        https://app.demiplane.com/*
@@ -174,29 +174,34 @@
           }
           return 'cosmere';
       }
-      function rollWatcher(prevLState, charHash){
+      function rollWatcher(prevLState, charHash, execute){
           let game = getGame();
           let menuOpen = document.getElementsByClassName(demiGameClassMap?.[game]?.rollsClosed || 'dice-close-button').length;
-          let sessionID = window.location.href.substring(window.location.href.lastIndexOf('/') + 1) + '-dice-history';
+          let parsedSession = window.location.href.substring(window.location.href.lastIndexOf('/') + 1);
+          let sessionID = parsedSession + '-dice-history';
           let lState = localStorage.getItem(sessionID);
           if (!lState){
               sessionID = sessionID.replace('dice-history', 'dicerolls');
               lState = localStorage.getItem(sessionID);
           }
-          if (charHash !== sessionID){
-              setTimeout(()=>{ rollWatcher(lState, sessionID); }, 1000);
+          if (charHash !== parsedSession){
+              setTimeout(()=>{ rollWatcher(lState, parsedSession); }, 500);
               return;
           }
           if (!menuOpen){
-              setTimeout(()=>{ rollWatcher(prevLState, sessionID); }, 1000);
+              setTimeout(()=>{ rollWatcher(prevLState, parsedSession); }, 500);
               return;
           }
           let shouldRoll = false;
-          if (JSON.stringify(prevLState) !== JSON.stringify(lState)){
+          if (prevLState !== lState){
               shouldRoll = true;
           }
           if (!shouldRoll){
-              setTimeout(()=>{ rollWatcher(prevLState, sessionID); }, 1000);
+              setTimeout(()=>{ rollWatcher(prevLState, parsedSession); }, 500);
+              return;
+          }
+          else if (shouldRoll && !execute){
+              setTimeout(()=>{ rollWatcher(prevLState, parsedSession, true); }, 100);
               return;
           }
           let rollEls = document.querySelectorAll(demiGameClassMap?.[game]?.rollVals ? `.${ demiGameClassMap?.[game]?.rollVals.join(',.') }` : 'nothing');
@@ -210,6 +215,10 @@
                   }
               }
               rolls.push(rollForm.length ? rollForm.join(', ') : e.innerHTML);
+          }
+          if (!rolls.length){
+              setTimeout(()=>{ rollWatcher(prevLState, parsedSession); }, 500);
+              return;
           }
           if (demiGameClassMap?.[game]?.orderReversed){
               rolls = rolls.reverse();
@@ -289,15 +298,16 @@
           let constructedMessage = `&{template:default} {{name=${ charName ? `${ charName } - ` : '' }${ rollNames[rolls.length - 1] }}} ${ rollTypes[rolls.length - 1] ? `{{type=${ rollTypes[rolls.length - 1] }}}` : '' } {{result=${ rolls[rolls.length - 1] }}} ${ rollCases?.[rolls.length - 1] ? '{{additional effects=' + rollCases[rolls.length - 1] + '}}' : '' } ${ damageRolls[rolls.length - 1] ? `{{damage=${ damageRolls[rolls.length - 1] }}}` : '' }`;
           console.log('Sending message to roll20: ', constructedMessage);
           GM_sendMessage('demiplane-pipe', `${ Math.random() }---` + constructedMessage);
-          setTimeout(()=>{ rollWatcher(lState, sessionID); }, 1000);
+          setTimeout(()=>{ rollWatcher(lState, sessionID); }, 500);
       }
-      let sessionID = window.location.href.substring(window.location.href.lastIndexOf('/') + 1) + '-dice-history';
+      let parsedSession = window.location.href.substring(window.location.href.lastIndexOf('/') + 1);
+      let sessionID = parsedSession + '-dice-history';
       let lState = localStorage.getItem(sessionID);
       if (!lState){
           sessionID = sessionID.replace('dice-history', 'dicerolls');
           lState = localStorage.getItem(sessionID);
       }
-      rollWatcher(lState, sessionID);
+      rollWatcher(lState, parsedSession);
   }
 
 })();
