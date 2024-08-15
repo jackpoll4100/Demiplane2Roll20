@@ -12,11 +12,11 @@ Once you have one of those extensions, you can enable it by clicking the install
 
 https://greasyfork.org/en/scripts/503467-demiplane-2-roll20
 
+When enabled, it creates a communication layer between Demiplane and Roll20, allowing rolls made in your Demiplane character sheet to automatically appear in Roll20 (with the same roll result that shows in Demiplane).
+
 Note, if you are on certain newer versions of Google Chrome, you may need to turn on the developer mode setting for Tampermonkey to work properly, see the instructions here:
 
 https://www.tampermonkey.net/faq.php#Q209
-
-When enabled, it creates a communication layer between Demiplane and Roll20, allowing rolls made in your Demiplane character sheet to automatically appear in Roll20 (with the same roll result that shows in Demiplane).
 
 ## Getting Started
 
