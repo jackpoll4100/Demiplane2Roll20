@@ -46,7 +46,7 @@ Starfinder: Natural 20s
 
 Pathfinder: Natural 20s
 
-Alien RPG: Panic
+Alien RPG: Panic, Panic Roll effects
 
 Vampire the Masquerade: Messy Critical, Bestial Failure, Standard Critical
 
