@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Demiplane 2 Roll20
 // @namespace    jackpoll4100
-// @version      1.5
+// @version      1.6
 // @description  Allows rolling from demiplane character sheets in roll20.
 // @author       jackpoll4100
 // @match        https://app.demiplane.com/*
@@ -150,8 +150,11 @@
               rollVals: ['dice-history-successes-value','dice-history-item-result-value'],
               nameVal: 'dice-history-item-name',
               charName: 'character-name',
+              modifierToken: ' - ',
               modifiers: {
-                  'with-panic': 'Panic'
+                  'with-panic': 'Panic',
+                  'panic-table-result-name': 'innerHTML',
+                  'panic-table-result-description': 'innerHTML'
               }
           },
           'vampire': {
@@ -279,6 +282,12 @@
                               modSet.push(demiGameClassMap?.[game]?.modifiers?.[m]);
                           }
                       }
+                      else if (demiGameClassMap?.[game]?.modifiers?.[m] === 'innerHTML'){
+                          let elem = e.getElementsByClassName(m)?.[0];
+                          if (elem){
+                              modSet.push(elem.innerHTML);
+                          }
+                      }
                       else if (e.classList.value.includes(m)){
                           modSet.push(demiGameClassMap?.[game]?.modifiers?.[m]);
                       }
@@ -287,7 +296,7 @@
                       rollCases.push(false);
                   }
                   else{
-                      rollCases.push(modSet.join(', '));
+                      rollCases.push(modSet.join(demiGameClassMap?.[game]?.modifierToken || ', '));
                   }
               }
               if (demiGameClassMap?.[game]?.orderReversed){
