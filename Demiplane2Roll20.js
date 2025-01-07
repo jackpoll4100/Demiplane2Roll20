@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Demiplane 2 Roll20
 // @namespace    jackpoll4100
-// @version      1.6
+// @version      1.7
 // @description  Allows rolling from demiplane character sheets in roll20.
 // @author       jackpoll4100
 // @match        https://app.demiplane.com/*
@@ -181,6 +181,9 @@
           let game = getGame();
           let menuOpen = document.getElementsByClassName(demiGameClassMap?.[game]?.rollsClosed || 'dice-close-button').length;
           let parsedSession = window.location.href.substring(window.location.href.lastIndexOf('/') + 1);
+          if (parsedSession.includes('?')){
+              parsedSession = parsedSession.split('?')[0];
+          }
           let sessionID = parsedSession + '-dice-history';
           let lState = localStorage.getItem(sessionID);
           if (!lState){
