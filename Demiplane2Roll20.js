@@ -181,7 +181,7 @@
           let game = getGame();
           let menuOpen = document.getElementsByClassName(demiGameClassMap?.[game]?.rollsClosed || 'dice-close-button').length;
           let parsedSession = window.location.href.substring(window.location.href.lastIndexOf('/') + 1);
-          if (parsedSession.includes('?')){
+          if (parsedSession?.includes('?')){
               parsedSession = parsedSession.split('?')[0];
           }
           let sessionID = parsedSession + '-dice-history';
