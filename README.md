@@ -58,4 +58,4 @@ Vampire the Masquerade: Messy Critical, Bestial Failure, Standard Critical
 
 -If you collapse your roll results, the tool can only show what is in the collapsed view in roll20. This means the subheader and other things that are hidden in collapsed mode will not appear in Roll20. The tool should work as normal otherwise, and if you want the additional information, just toggle the dice view to be uncollapsed.
 
--The Cyberpunk character sheet was recently released, I haven't had added it yet but should have support for it soon.
+-The Cyberpunk character sheet was recently released, I haven't added it yet but should have support for it soon.
