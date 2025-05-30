@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Demiplane 2 Roll20
 // @namespace    jackpoll4100
-// @version      1.7
+// @version      1.8
 // @description  Allows rolling from demiplane character sheets in roll20.
 // @author       jackpoll4100
 // @match        https://app.demiplane.com/*
@@ -190,6 +190,12 @@
               sessionID = sessionID.replace('dice-history', 'dicerolls');
               lState = localStorage.getItem(sessionID);
           }
+          // This is hacky, I feel like npc history is probably not supposed to be stored under "undefined".
+          if (!lState && window.location.href.includes('npc-sheet'))
+          {
+              sessionID = 'undefined-dice-history';
+              lState = localStorage.getItem(sessionID);
+          }
           if (charHash !== parsedSession){
               setTimeout(()=>{ rollWatcher(lState, parsedSession); }, 500);
               return;
@@ -317,6 +323,12 @@
       let lState = localStorage.getItem(sessionID);
       if (!lState){
           sessionID = sessionID.replace('dice-history', 'dicerolls');
+          lState = localStorage.getItem(sessionID);
+      }
+      // This is hacky, I feel like npc history is probably not supposed to be stored under "undefined".
+      if (!lState && window.location.href.includes('npc-sheet'))
+      {
+          sessionID = 'undefined-dice-history';
           lState = localStorage.getItem(sessionID);
       }
       rollWatcher(lState, parsedSession);
