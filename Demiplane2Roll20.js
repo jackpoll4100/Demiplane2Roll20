@@ -64,6 +64,17 @@
       console.log('demiplane listener registered');
   }
   else {
+      // Watch for focus.
+      let focused = true;
+      document.addEventListener("visibilitychange", () => {
+          if (document.hidden) {
+              focused = false;
+          }
+          else
+          {
+              focused = true;
+          }
+      });
       function GM_sendMessage(label){
           GM_setValue(label, Array.from(arguments).slice(1));
       }
@@ -196,7 +207,7 @@
               sessionID = 'undefined-dice-history';
               lState = localStorage.getItem(sessionID);
           }
-          if (charHash !== parsedSession){
+          if (charHash !== parsedSession || !focused){
               setTimeout(()=>{ rollWatcher(lState, parsedSession); }, 500);
               return;
           }
