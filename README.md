@@ -5,7 +5,7 @@ Note that this tool does not use the Roll20 api and so should not require you to
 
 This tool is also compatible with the new Discord Activity for Roll20.
 
-NPC sheets should now be mostly supported but see the known issues section at the bottom for bugs related to that feature.
+NPC sheets should now be supported.
 
 ## Overview
 This is a ```UserScript```, meaning it needs to be used with a browser extension like [TamperMonkey](https://chromewebstore.google.com/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo) or [ViolentMonkey](https://chromewebstore.google.com/detail/violentmonkey/jinjaccalgkegednnccohejagnlnfdag) etc.
@@ -57,6 +57,3 @@ Vampire the Masquerade: Messy Critical, Bestial Failure, Standard Critical
 -I've tested with all currently available character sheets in Demiplane and I think everything should be working but if new sheets are added it may take me a little bit to add them to implementation, there are small code changes I need to make if new sheet types get added.
 
 -If you collapse your roll results, the tool can only show what is in the collapsed view in roll20. This means the subheader and other things that are hidden in collapsed mode will not appear in Roll20. The tool should work as normal otherwise, and if you want the additional information, just toggle the dice view to be uncollapsed.
-
--NPC Sheets now mostly supported in v1.8. However there is a bug, namely that if more than one NPC is open at once, rolling on one sheet can cause another to resend its last roll while open in another tab. Currently I don't see an easy way around this as long as Demiplane is keeping all NPC rolls in local storage under the same undefined namespace (meaning they can overwrite eachother's roll histories when multiple are open).
-There are some ways to kind of work around this, one is that if you collapse the dice roller on each sheet after making each roll and make sure to refresh each sheet before making a new roll you shouldn't have duplicates.
