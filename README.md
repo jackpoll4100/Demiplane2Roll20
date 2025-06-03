@@ -5,7 +5,7 @@ Note that this tool does not use the Roll20 api and so should not require you to
 
 This tool is also compatible with the new Discord Activity for Roll20.
 
-NPC sheets should now be supported.
+NPC sheets should now be supported as well.
 
 ## Overview
 This is a ```UserScript```, meaning it needs to be used with a browser extension like [TamperMonkey](https://chromewebstore.google.com/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo) or [ViolentMonkey](https://chromewebstore.google.com/detail/violentmonkey/jinjaccalgkegednnccohejagnlnfdag) etc.
@@ -52,10 +52,10 @@ Alien RPG: Panic, Panic Roll effects
 
 Vampire the Masquerade: Messy Critical, Bestial Failure, Standard Critical
 
+Cyberpunk Red: Critical Success, Critical Failure
+
 ## Caveats/Known Issues:
 
 -I've tested with all currently available character sheets in Demiplane and I think everything should be working but if new sheets are added it may take me a little bit to add them to implementation, there are small code changes I need to make if new sheet types get added.
 
 -If you collapse your roll results, the tool can only show what is in the collapsed view in roll20. This means the subheader and other things that are hidden in collapsed mode will not appear in Roll20. The tool should work as normal otherwise, and if you want the additional information, just toggle the dice view to be uncollapsed.
-
--The Cyberpunk character sheet was recently released, I haven't added it yet but should have support for it soon.
