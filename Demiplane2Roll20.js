@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Demiplane 2 Roll20
 // @namespace    jackpoll4100
-// @version      1.9
+// @version      1.10
 // @description  Allows rolling from demiplane character sheets in roll20.
 // @author       jackpoll4100
 // @match        https://app.demiplane.com/*
@@ -323,7 +323,7 @@
                   rollCases = rollCases.reverse();
               }
           }
-          let charName = document?.getElementsByClassName(demiGameClassMap?.[game]?.charName || 'nothing')?.[0]?.children?.[0]?.innerHTML;
+          let charName = document?.getElementsByClassName(demiGameClassMap?.[game]?.charName || 'nothing')?.[0]?.children?.[0]?.innerHTML || document?.getElementsByClassName('stat-block-name')?.[0]?.innerHTML || '';
           let constructedMessage = `&{template:default} {{name=${ charName ? `${ charName } - ` : '' }${ rollNames[rolls.length - 1] }}} ${ rollTypes[rolls.length - 1] ? `{{type=${ rollTypes[rolls.length - 1] }}}` : '' } {{result=${ rolls[rolls.length - 1] }}} ${ rollCases?.[rolls.length - 1] ? '{{additional effects=' + rollCases[rolls.length - 1] + '}}' : '' } ${ damageRolls[rolls.length - 1] ? `{{damage=${ damageRolls[rolls.length - 1] }}}` : '' }`;
           console.log('Sending message to roll20: ', constructedMessage);
           GM_sendMessage('demiplane-pipe', `${ Math.random() }---` + constructedMessage);
