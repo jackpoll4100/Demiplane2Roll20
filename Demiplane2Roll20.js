@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Demiplane 2 Roll20
 // @namespace    jackpoll4100
-// @version      1.10
+// @version      1.11
 // @description  Allows rolling from demiplane character sheets in roll20.
 // @author       jackpoll4100
 // @match        https://app.demiplane.com/*
@@ -89,6 +89,16 @@
               modifiers: {
                   'complication': 'Complication',
                   'opportunity': 'Opportunity'
+              }
+          },
+          'cyberpunkred': {
+              rollVals: ['dice-history-item-result-value'],
+              nameVal: 'dice-history-item-name',
+              secondaryNameVal: 'dice-history-item-name--source',
+              charName: 'character-name',
+              modifiers: {
+                  'dice-roller-history--critical-failure': 'Critical Failure',
+                  'dice-roller-history--critical-success': 'Critical Success'
               }
           },
           'marvelrpg': {
