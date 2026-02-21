@@ -16,9 +16,11 @@ https://greasyfork.org/en/scripts/503467-demiplane-2-roll20
 
 When enabled, it creates a communication layer between Demiplane and Roll20, allowing rolls made in your Demiplane character sheet to automatically appear in Roll20 (with the same roll result that shows in Demiplane).
 
-Note, if you are on certain newer versions of Google Chrome, you may need to turn on the developer mode setting for Tampermonkey to work properly, see the instructions here:
+Note, if you are on Google Chrome, Brave, and Opera (and possibly Firefox now too, see note below), you will need to turn on the developer mode extension setting for Tampermonkey to work properly, see the instructions here (Note, you may also need to set the "Allow Userscripts" toggle for the extension as well, this is also covered in the page linked below):
 
 https://www.tampermonkey.net/faq.php#Q209
+
+I have heard from some people that this was necessary on Firefox as well despite Firefox supporting manifest V2 (deprecated by Chrome). So bear in mind this may or may not be necessary depending on which extension you use for installing userscripts in Firefox.
 
 ## Getting Started
 
